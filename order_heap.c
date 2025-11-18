@@ -84,7 +84,26 @@ void display_heap(order_heap_t *h, catalog_t *c) {
     }
 }
 
-void delete_heap(order_heap_t *h) {
-    h->size = 0;
-    h->next_order_id = 1;
+void delete_heap(order_heap_t *h, int oid) {
+    for (int i = 0; i < h->size; ++i) {
+        if (h->heap[i].order_id == oid) {
+            h->heap[i] = h->heap[h->size - 1];
+            h->size--;
+
+            int idx = i;
+            while (1) {
+                int left = 2*idx + 1;
+                int right = 2*idx + 2;
+                int largest = idx;
+                if (left < h->size && h->heap[left].priority > h->heap[largest].priority) largest = left;
+                if (right < h->size && h->heap[right].priority > h->heap[largest].priority) largest = right;
+                if (largest != idx) {
+                    swap_orders(&h->heap[idx], &h->heap[largest]);
+                    idx = largest;
+                } else break;
+            }
+            printf("Order %d deleted.\n", oid);
+            return;
+        }
+    }
 }

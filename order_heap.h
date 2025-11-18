@@ -23,6 +23,6 @@ void heap_insert(order_heap_t *h, int product_id, int quantity, int priority);
 order_t heap_extract_max(order_heap_t *h);
 order_t heap_peek(order_heap_t *h);
 void display_heap(order_heap_t *h, catalog_t *c);
-void delete_heap(order_heap_t *h);
+void delete_heap(order_heap_t *h, int oid);
 
 #endif

@@ -22,8 +22,8 @@ int main() {
         printf("4. Show Top Pending Order\n");
         printf("5. Show All Pending Orders\n");
         printf("6. Show Processed Orders\n");
-        printf("8. Delete Orders\n");
-        printf("9. Exit\n");
+        printf("7. Delete Orders\n");
+        printf("8. Exit\n");
         printf("Enter choice: ");
         if (scanf("%d", &ch) != 1) {
             int c; while ((c = getchar()) != '\n' && c != EOF);
@@ -82,6 +82,14 @@ int main() {
         else if (ch == 5) display_heap(&orders, &catalog);
         else if (ch == 6) display_processed(&processed, &catalog);
         else if (ch == 7) {
+            display_heap(&orders, &catalog);
+            int oid;
+            printf("Enter Order ID to delete:");
+            scanf("%d", &oid);
+            delete_heap(&orders,oid);
+            printf("Pending orders deleted.\n");
+        }
+        else if (ch == 8) {
             printf("Exiting...\n");
             break;
         } else printf("Invalid choice.\n");
