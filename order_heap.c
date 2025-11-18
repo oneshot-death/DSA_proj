@@ -22,6 +22,7 @@ void heap_insert(order_heap_t *h, int product_id, int quantity, int priority) {
     h->heap[i].product_id = product_id;
     h->heap[i].quantity = quantity;
     h->heap[i].priority = priority;
+    h->heap[i].status = 0;
     h->size++;
 
     while (i > 0) {
@@ -106,4 +107,20 @@ void delete_heap(order_heap_t *h, int oid) {
             return;
         }
     }
+}
+
+void update_status(order_heap_t *h, catalog_t *c, int mark, int oid) {
+    if (h->size == 0) {
+        printf("No pending orders to update.\n");
+        return;
+    }
+
+    for (int i = 0; i < h->size; ++i) {
+        if (h->heap[i].order_id == oid) {
+            h->heap[i].status = mark;
+            printf("Order %d status updated.\n", oid);
+            return;
+        }
+    }
+    printf("Order ID %d not found in pending orders.\n", oid);
 }

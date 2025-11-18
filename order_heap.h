@@ -10,6 +10,7 @@ typedef struct order {
     int product_id;
     int quantity;
     int priority;
+    int status;
 } order_t;
 
 typedef struct order_heap {
@@ -24,5 +25,6 @@ order_t heap_extract_max(order_heap_t *h);
 order_t heap_peek(order_heap_t *h);
 void display_heap(order_heap_t *h, catalog_t *c);
 void delete_heap(order_heap_t *h, int oid);
+void update_status(order_heap_t *h, catalog_t *c, int mark, int oid);
 
 #endif
