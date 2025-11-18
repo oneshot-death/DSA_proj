@@ -83,3 +83,8 @@ void display_heap(order_heap_t *h, catalog_t *c) {
                h->heap[i].priority);
     }
 }
+
+void delete_heap(order_heap_t *h) {
+    h->size = 0;
+    h->next_order_id = 1;
+}
