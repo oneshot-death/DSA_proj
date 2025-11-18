@@ -1,0 +1,1 @@
+Simply run ecommerce.exe on a terminal
